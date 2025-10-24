@@ -1,0 +1,92 @@
+/* Styles spécifiques pour le composant Auxiliaire de Lydie */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Styles pour les cartes membres */
+.membre-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Couleurs spécifiques au département Auxiliaire de Lydie (Purple theme) */
+.focus\:ring-purple-500:focus {
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.focus\:border-purple-500:focus {
+  border-color: #a855f7;
+}
+
+.bg-purple-100 {
+  background-color: #f3e8ff;
+}
+
+.text-purple-800 {
+  color: #581c87;
+}
+
+.bg-purple-500 {
+  background-color: #a855f7;
+}
+
+.border-purple-500 {
+  border-color: #a855f7;
+}
+
+.text-purple-600 {
+  color: #9333ea;
+}
+
+.bg-purple-50 {
+  background-color: #faf5ff;
+}
+
+/* Styles pour les boutons de pagination */
+.pagination-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .membre-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .membre-actions {
+    margin-top: 8px;
+    width: 100%;
+  }
+}
+
+/* Animation pour l'apparition des éléments */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

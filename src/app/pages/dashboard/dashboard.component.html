@@ -1,0 +1,28 @@
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+    <app-cards
+        title="Total membres" 
+        [count]="totalMembres"
+        iconClass="icon-[stash--people-group-light]"
+        bgClass="bg-blue-100 text-blue-600 ">
+    </app-cards>
+    <app-cards
+        title="Total diacres" 
+        [count]="0"
+        iconClass="icon-[fluent--people-star-20-regular]"
+        bgClass="bg-green-100 text-green-600 ">
+    </app-cards>
+    <app-cards
+        title="Total departements" 
+        [count]="totalDepartement"
+        iconClass="icon-[streamline-flex--hierarchy-2]"
+        bgClass="bg-yellow-100 text-yellow-6000 ">
+    </app-cards>
+    <app-cards
+        title="Total responsable" 
+        [count]="0"
+        iconClass="icon-[fa6-solid--people-roof]"
+        bgClass="bg-red-100 text-red-600">
+    </app-cards>
+</div>

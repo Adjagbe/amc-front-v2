@@ -1,0 +1,66 @@
+/* Styles spécifiques pour le composant Service Social */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Couleurs spécifiques au département Service Social (Orange theme) */
+.focus\:ring-orange-500:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.focus\:border-orange-500:focus {
+  border-color: #f97316;
+}
+
+.bg-orange-100 {
+  background-color: #fed7aa;
+}
+
+.text-orange-800 {
+  color: #9a3412;
+}
+
+.bg-orange-500 {
+  background-color: #f97316;
+}
+
+.border-orange-500 {
+  border-color: #f97316;
+}
+
+.text-orange-600 {
+  color: #ea580c;
+}
+
+.bg-orange-50 {
+  background-color: #fff7ed;
+}
+
+/* Styles pour les cartes membres */
+.membre-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .membre-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .membre-actions {
+    margin-top: 8px;
+    width: 100%;
+  }
+}

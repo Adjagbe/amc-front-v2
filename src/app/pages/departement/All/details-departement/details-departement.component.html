@@ -1,0 +1,82 @@
+
+<div *ngIf="showDepartement" class="bg-white overflow-hidden  rounded-lg border mx-4 box">
+    <div class="px-4 py-5 sm:px-6">
+        <div class="flex justify-between items-center">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Details du Departement
+            </h3>
+            <button routerLink="/departement" class="px-2 py-1.5 bg-black flex 
+                items-center btn shadow-none border-none text-white rounded hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50">
+                <span class="icon-[basil--arrow-left-solid] size-5"></span>
+                <p>Retour </p>
+            </button>
+        </div>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+            les informations du departement de l'eglise 
+        </p>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <dl class="sm:divide-y sm:divide-gray-200">
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Libelle
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {{showDepartement.libelle}}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Responsable principal
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <span *ngIf="showDepartement.id_responsable; else noResponsable">
+                        {{showDepartement.id_responsable.nom}} {{showDepartement.id_responsable.prenom}}
+                    </span>
+                    <ng-template #noResponsable>
+                        <span class="text-gray-500 italic">Aucun responsable assigné</span>
+                    </ng-template>
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Responsable adjoint
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <span *ngIf="showDepartement.id_responsable2; else noResponsable2">
+                        {{showDepartement.id_responsable2.nom}} {{showDepartement.id_responsable2.prenom}}
+                    </span>
+                    <ng-template #noResponsable2>
+                        <span class="text-gray-500 italic">Aucun responsable 2 assigné</span>
+                    </ng-template>
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Nombre de membres
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <div *ngIf="!loadingMembres; else loadingCount" class="flex items-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                            {{nombreMembres}} membre{{nombreMembres !== 1 ? 's' : ''}}
+                        </span>
+                    </div>
+                    <ng-template #loadingCount>
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded w-20"></div>
+                        </div>
+                    </ng-template>
+                </dd>
+            </div>
+           
+            
+        </dl>
+    </div>
+</div>
+
+<!-- loader -->
+<div *ngIf="loading" class="w-full h-full fixed top-0 left-0 bg-white opacity-50 z-50">
+    <div class="flex justify-center items-center mt-[50vh]">
+      <span class="loading loading-spinner  text-blue-700 w-20"></span>
+    </div>
+  </div>

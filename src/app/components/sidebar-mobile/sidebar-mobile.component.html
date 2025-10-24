@@ -1,0 +1,42 @@
+<button type="button" class="btn bg-transparent shadow-none border-none" aria-haspopup="dialog" aria-expanded="false"
+    aria-controls="overlay-example" data-overlay="#overlay-example">
+    <span class="icon-[material-symbols--menu] size-6"></span>
+</button>
+
+<div id="overlay-example" class="overlay overlay-open:translate-x-0 drawer drawer-start hidden bg-gray-800 text-white" role="dialog"
+    tabindex="-1">
+    <div class="drawer-header">
+        <div class="flex items-center ">
+            <img src="assets/logo.png" width="50"/>
+            <h3 class="drawer-title pl-3">Amour du Christ </h3>
+        </div>
+
+        <button type="button" class="btn btn-text btn-circle btn-sm absolute end-3 top-3" aria-label="Close"
+            data-overlay="#overlay-example">
+            <span class="icon-[tabler--x] size-5"></span>
+        </button>
+    </div>
+    <div class="drawer-body">
+        <nav class="flex-1 space-y-2">
+            <a routerLink="/tableau-de-bord" routerLinkActive="active"  class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-700 text-white cursor-pointer">
+                Tableau de bord
+            </a>
+            <a routerLink="/membres" routerLinkActive="active" class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-700 text-white cursor-pointer">
+                Membres
+            </a>
+            <a routerLink="/departement" routerLinkActive="active" class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-700 text-white cursor-pointer">
+                Departement
+            </a>
+            <a [hidden]="!view" routerLink="/activity/logs" routerLinkActive="active" class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-700 text-white cursor-pointer">
+                Logs utilisateurs
+            </a>
+            <!-- <a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-700 text-white">
+                Rooms
+            </a> -->
+
+        </nav>
+    </div>
+    <div class="drawer-footer">
+        <button type="button" class="btn btn-soft bg-blue-600 text-white" data-overlay="#overlay-example">Fermer</button>
+    </div>
+</div>

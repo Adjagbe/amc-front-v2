@@ -1,0 +1,26 @@
+<header class="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+    <div class="flex items-center">
+        <!-- Sidebar Mobile -->
+        <div class="md:hidden ">
+            <div>
+                <app-sidebar-mobile></app-sidebar-mobile>
+            </div>
+        </div>
+        <h1 class="text-xl font-semibold text-gray-800 ml-4">Gestion </h1>
+    </div>
+    <div class="flex items-center space-x-4">
+
+
+        <div class="dropdown relative inline-flex">
+            <button id="dropdown-default" type="button" class="dropdown-toggle btn bg-transparent shadow-none border-0 " aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                <img class="w-8 h-8 rounded-full" src="assets/user.png" alt="User">
+              <span class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60 bg-white" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-default">
+              <li><a class="dropdown-item" ><span class="text-gray-800 "> {{first_name}} </span></a></li>
+              <li class="cursor-pointer"><a class="dropdown-item text-red-500 " (click)="logout()">Se deconnecter</a></li>
+            </ul>
+        </div>
+        
+    </div>
+</header>

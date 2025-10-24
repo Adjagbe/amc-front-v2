@@ -1,0 +1,105 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MembresService } from '../../../service/membres.service';
+import { DepartementsService } from '../../../service/departements/departements.service';
+import { NotificationService } from '../../../service/notification/notification.service';
+import { Membres } from '../../../models/membres';
+import { Departements } from '../../../models/departements/departements';
+import { RouterLink } from '@angular/router';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+
+@Component({
+  selector: 'app-union-femmes-missionnaires',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink, PaginationComponent],
+  templateUrl: './union-femmes-missionnaires.component.html',
+  styleUrls: ['./union-femmes-missionnaires.component.css']
+})
+export class UnionFemmesMissionnairesComponent implements OnInit {
+  membres: Membres[] = [];
+  departement: Departements | null = null;
+  searchTerm: string = '';
+  isLoading: boolean = false;
+  
+  // Pagination
+  page = 1;
+  pageSize = 8;
+  collectionSize = 0;
+
+  // Getters pour l'affichage de pagination
+  get start(): number {
+    return Math.min((this.page - 1) * this.pageSize + 1, this.collectionSize);
+  }
+
+  get end(): number {
+    return Math.min(this.page * this.pageSize, this.collectionSize);
+  }
+
+  constructor(
+    private membresService: MembresService,
+    private departementsService: DepartementsService,
+    private notificationService: NotificationService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadDepartementInfo();
+  }
+
+  loadDepartementInfo(): void {
+    this.departementsService.getAllDepartements().then((departements: any) => {
+      this.departement = departements.find((d: any) => d.libelle === 'Union Femmes Missionnaires') || null;
+      if (this.departement) {
+        this.loadPagination();
+      }
+    }).catch((error: any) => {
+      console.error('Erreur lors du chargement des informations du département:', error);
+    });
+  }
+
+  loadPagination(): void {
+    if (!this.departement) {
+      console.error('Aucune information sur le département disponible');
+      return;
+    }
+
+    this.searchTerm = (this.searchTerm.length > 2) ? this.searchTerm : '';
+    this.isLoading = true;
+    
+    this.membresService.getPaginateMembresByDepartement(
+      this.departement.id,
+      this.page,
+      this.pageSize,
+      this.searchTerm
+    ).then((response: any) => {
+      this.membres = response.data;
+      this.collectionSize = response.total;
+    }).catch((error: any) => {
+      console.error('Erreur lors du chargement des membres:', error);
+    }).finally(() => {
+      this.isLoading = false;
+    });
+  }
+
+  onPageChange(newPage: number): void {
+    this.page = newPage;
+    this.loadPagination();
+  }
+
+  search(): void {
+    this.page = 1;
+    this.loadPagination();
+  }
+
+  calculateAge(birthday: string): number {
+    if (!birthday) return 0;
+    const birthDate = new Date(birthday);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+}

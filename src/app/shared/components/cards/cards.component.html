@@ -1,0 +1,12 @@
+<div class="bg-white rounded-lg border border-gray-200 p-6">
+  <div class="flex items-center">
+    <div class="p-2 rounded-full w-10 h-10 flex items-center justify-center"
+      [ngClass]="bgClass" >
+      <span class="size-6" [ngClass]="iconClass"></span>
+    </div>
+    <div class="ml-4">
+      <p class="text-sm font-medium text-gray-500">{{ title }}</p>
+      <p class="text-2xl font-semibold text-gray-800">{{ count }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<!-- <nav class="flex items-center gap-x-2 justify-center my-4">
+  <button type="button" class="btn btn-text" (click)="onPageChange(page - 1)" [disabled]="page === 1">Précédent</button>
+
+  <div class="flex items-center gap-x-1">
+    <ng-container *ngFor="let p of totalPages">
+      <button
+        *ngIf="!isHidden(p); else ellipsis"
+        type="button"
+        class="btn btn-text btn-square  "
+        [attr.aria-current]="page === p ? 'page' : null"
+        [ngClass]="{'bg-blue-600 text-white': page === p}"
+        (click)="onPageChange(p)">
+        {{ p }}
+      </button>
+      <ng-template #ellipsis>
+        <span class="btn btn-text btn-square cursor-default select-none">…</span>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <button type="button" class="btn btn-text" (click)="onPageChange(page + 1)" [disabled]="page === totalPages.length">Suivant</button>
+</nav> -->
+
+<nav class="flex items-center gap-x-2 justify-center my-4">
+  <button type="button" class="btn btn-text" (click)="onPageChange(page - 1)" [disabled]="page === 1">Précédent</button>
+   <div class="flex items-center gap-x-1">
+    <ng-container *ngFor="let p of visiblePages">
+      <button
+        *ngIf="p !== null; else ellipsis"
+        type="button"
+        class="btn btn-text btn-square"
+        [attr.aria-current]="page === p ? 'page' : null"
+        [ngClass]="{'bg-blue-600 text-white': page === p}"
+        (click)="onPageChange(p)">
+        {{ p }}
+      </button>
+      <ng-template #ellipsis>
+        <span class="btn btn-text btn-square cursor-default select-none">…</span>
+      </ng-template>
+    </ng-container>
+   </div>
+    <button type="button" class="btn btn-text" (click)="onPageChange(page + 1)" [disabled]="page === totalPages.length">Suivant</button>
+</nav>

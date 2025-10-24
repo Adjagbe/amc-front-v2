@@ -1,0 +1,66 @@
+/* Styles spécifiques pour le composant Chorale */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Couleurs spécifiques au département Chorale (Blue theme) */
+.focus\:ring-blue-500:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.focus\:border-blue-500:focus {
+  border-color: #3b82f6;
+}
+
+.bg-blue-100 {
+  background-color: #dbeafe;
+}
+
+.text-blue-800 {
+  color: #1e40af;
+}
+
+.bg-blue-500 {
+  background-color: #3b82f6;
+}
+
+.border-blue-500 {
+  border-color: #3b82f6;
+}
+
+.text-blue-600 {
+  color: #2563eb;
+}
+
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+/* Styles pour les cartes membres */
+.membre-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .membre-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .membre-actions {
+    margin-top: 8px;
+    width: 100%;
+  }
+}

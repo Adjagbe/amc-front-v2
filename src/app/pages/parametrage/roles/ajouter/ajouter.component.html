@@ -1,0 +1,65 @@
+<h1 class="text-xl max-sm:text-lg font-bold text-gray-800 pb-8 pt-4 ">Gestion des Rôles - Enregistrement</h1>
+
+<div *ngIf="messageError" class="alert alert-soft alert-warning bg-amber-200 flex items-center gap-4 mb-5 " role="alert"  >
+  <span class="icon-[tabler--alert-triangle] shrink-0 size-6"></span>
+  <p><span class="text-lg font-semibold">Attention :</span> {{messageError}}</p>
+</div>
+
+<div class="lg:col-span-2 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200 bg-gray-200">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg max-md:hidden font-semibold text-gray-800">Ajouter un rôle</h2>
+            
+            <div class="flex items-center space-x-4">
+                <button routerLink="/parametrage/roles" class="px-2 py-1.5 bg-black flex items-center btn shadow-none border-none text-white rounded hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50">
+                    <span class="icon-[basil--arrow-left-solid] size-5"></span>
+                    <p>Retour </p>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+       <div class=" px-6 w-full  max-sm:px-3 bg-white py-8">
+            <form novalidate>
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-full px-3">
+                        <div class="mb-5">
+                            <label for="libelle" class="mb-3 block text-base font-medium text-gray-800">
+                                Libellé du rôle <span class="text-red-700">*</span>
+                            </label>
+                            <input 
+                                [(ngModel)]="newRole.libelle" 
+                                type="text" 
+                                name="libelle" 
+                                id="libelle" 
+                                placeholder="Ex: Administrateur, Responsable, Membre..."
+                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-blue-700 " 
+                            />
+                            <p class="mt-2 text-sm text-gray-500">
+                                Vous pourrez attribuer les permissions après la création du rôle.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-36">
+                    <button 
+                        (click)="createRole()" 
+                        type="button" 
+                        [disabled]="!newRole.libelle || loading"
+                        class="hover:shadow-form w-full rounded-md bg-blue-700 btn shadow-none border-none py-2 px-4 text-center text-base font-semibold text-white outline-none flex items-center space-x-3 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        <span class="icon-[mdi--floppy-disk] size-5"></span>
+                        <span>Enregistrer</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- loader -->
+<div *ngIf="loading" class="w-full h-full fixed top-0 left-0 bg-white opacity-50 z-50">
+  <div class="flex justify-center items-center mt-[50vh]">
+    <span class="loading loading-spinner  text-blue-700 w-20"></span>
+  </div>
+</div>

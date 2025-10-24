@@ -1,0 +1,76 @@
+/* Styles spécifiques pour le composant Auxiliaire de Jeunes Filles */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Couleurs spécifiques au département Auxiliaire de Jeunes Filles (Pink theme) */
+.focus\:ring-pink-500:focus {
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.focus\:border-pink-500:focus {
+  border-color: #ec4899;
+}
+
+.bg-pink-100 {
+  background-color: #fce7f3;
+}
+
+.text-pink-800 {
+  color: #9d174d;
+}
+
+.bg-pink-500 {
+  background-color: #ec4899;
+}
+
+.border-pink-500 {
+  border-color: #ec4899;
+}
+
+.text-pink-600 {
+  color: #db2777;
+}
+
+.bg-pink-50 {
+  background-color: #fdf2f8;
+}
+
+/* Styles pour les cartes membres */
+.membre-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Styles pour les boutons de pagination */
+.pagination-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .membre-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .membre-actions {
+    margin-top: 8px;
+    width: 100%;
+  }
+}

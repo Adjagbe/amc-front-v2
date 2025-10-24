@@ -1,0 +1,91 @@
+<h1 class="text-xl max-sm:text-lg font-bold text-gray-800 pb-8 pt-4 ">
+    Gestion des Permissions - {{ role?.libelle }}
+</h1>
+
+<div *ngIf="messageError" class="alert alert-soft alert-warning bg-amber-200 flex items-center gap-4 mb-5 " role="alert">
+  <span class="icon-[tabler--alert-triangle] shrink-0 size-6"></span>
+  <p><span class="text-lg font-semibold">Attention :</span> {{messageError}}</p>
+</div>
+
+<div class="lg:col-span-2 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200 bg-gray-200">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg max-md:hidden font-semibold text-gray-800">
+                Attribuer des permissions
+            </h2>
+            
+            <div class="flex items-center space-x-4">
+                <div class="text-sm text-gray-600 bg-white px-3 py-2 rounded-md border border-gray-300">
+                    {{ selectedFonctionnalites.length }} permission(s) sélectionnée(s)
+                </div>
+                <button routerLink="/parametrage/roles" class="px-2 py-1.5 bg-black flex items-center btn shadow-none border-none text-white rounded hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50">
+                    <span class="icon-[basil--arrow-left-solid] size-5"></span>
+                    <p>Retour </p>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overflow-x-auto">
+        <div class="px-6 w-full max-sm:px-3 bg-white py-8">
+            
+            <!-- Liste des permissions -->
+            <div class="mb-8">
+                <div class="mb-4 pb-2 border-b-2 border-gray-300">
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center">
+                        <span class="icon-[mdi--shield-check-outline] size-6 mr-2 text-blue-600"></span>
+                        Toutes les fonctionnalités
+                    </h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div
+                        *ngFor="let fonc of fonctionnalites"
+                        class="flex items-start p-4 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-blue-300 transition-all cursor-pointer"
+                        (click)="toggleFonctionnalite(fonc.id!)">
+                        
+                        <input
+                            type="checkbox"
+                            [id]="'fonc-' + fonc.id"
+                            [checked]="isFonctionnaliteSelected(fonc.id!)"
+                            (click)="$event.stopPropagation()"
+                            (change)="toggleFonctionnalite(fonc.id!)"
+                            class="mt-1 mr-3 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
+                        />
+                        
+                        <label [for]="'fonc-' + fonc.id" class="flex-1 cursor-pointer">
+                            <div class="flex flex-col">
+                                <span class="font-semibold text-gray-900">{{ fonc.libelle }}</span>
+                                <span class="text-xs font-mono text-gray-500 mt-1">{{ fonc.code }}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton de sauvegarde -->
+            <div class="flex justify-between items-center pt-6 border-t border-gray-200">
+                <div class="text-sm text-gray-600">
+                    <span class="font-semibold">{{ selectedFonctionnalites.length }}</span> permission(s) sélectionnée(s) sur 
+                    <span class="font-semibold">{{ fonctionnalites.length }}</span> disponibles
+                </div>
+                
+                <button 
+                    (click)="savePermissions()" 
+                    type="button" 
+                    [disabled]="loading"
+                    class="px-6 py-2.5 bg-blue-700 btn shadow-none border-none text-white rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center space-x-3 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                    <span class="icon-[mdi--floppy-disk] size-5"></span>
+                    <span class="font-semibold">Enregistrer les permissions</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- loader -->
+<div *ngIf="loading" class="w-full h-full fixed top-0 left-0 bg-white opacity-50 z-50">
+  <div class="flex justify-center items-center mt-[50vh]">
+    <span class="loading loading-spinner text-blue-700 w-20"></span>
+  </div>
+</div>

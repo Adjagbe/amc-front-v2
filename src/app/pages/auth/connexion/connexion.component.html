@@ -1,0 +1,74 @@
+<div class="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <div
+        class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-blue-600">
+            Bienvenue
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-gray-600">
+            Connecte toi a ton compte
+          </p>
+        </div>
+        <p class="text-red-500 pb-2">{{message}}</p>
+        <!-- Form -->
+        <form class="space-y-6">
+          <!-- username -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700" for="pseudo">Pseudo</label>
+            <input
+              type="text"
+              id="pseudo"
+              [(ngModel)] ="pseudo"
+              name="pseudo"
+              class="mt-1 block w-full text-gray-600 px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 focus:outline-red-500"
+              required
+            />
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700" for="password">Mot de passe</label>
+            <div class="mt-1 relative">
+              <input
+                type="password"
+                id="password"
+                [(ngModel)]="password"
+                name="password"
+                class="block w-full px-3 py-2 sm:px-4 text-gray-600 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 focus:outline-red-500"
+                required
+              />
+              <button
+                type="button"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center"
+              >
+                
+              </button>
+            </div>
+          </div>
+
+
+          <button (click)="login()"
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 sm:py-3 border border-transparent rounded-lg shadow-sm text-sm sm:text-base font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
+            <span>Connexion</span>
+          </button>
+        </form>
+
+        <p class="mt-6 text-center text-gray-800 text-sm">
+          Pas de compte ?
+          <a (click)="linkWhatsapp()"  class="font-medium text-blue-600 hover:text-red-700 cursor-pointer">Ecris-nous</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<!-- loader -->
+<div *ngIf="loading" class="w-full h-full fixed top-0 left-0 bg-white opacity-50 z-50">
+  <div class="flex justify-center items-center mt-[50vh]">
+    <span class="loading loading-spinner  text-blue-700 w-20"></span>
+  </div>
+</div>
